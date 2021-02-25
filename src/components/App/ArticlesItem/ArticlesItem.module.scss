@@ -1,0 +1,118 @@
+.article_item {
+    margin-top: 26px;
+    list-style-type: none;
+}
+
+.article_item_block {
+    width: 938px;
+    min-height: 140px;
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.title {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+    &:focus-visible {
+        outline: 10px solid orange;
+    }
+    cursor: pointer;
+    & > a {
+        text-decoration: none;
+        color: #1890FF;
+        margin-right: 15px;
+    }
+    & > .btn_like_active {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+    }
+    & > .btn_like_disable {
+        border: none;
+        background-color: transparent;
+        font-size: 12px;
+    }
+}
+
+.tag_list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 600px;
+}
+
+.tag_item {
+    padding: 2px 6px;
+    margin-top: 5px; 
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    width: auto;
+    margin-right: 10px;
+}
+
+.right_image {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+
+.descr {
+    margin-top: 5px;
+}
+
+.right {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    &_info {
+        margin-right: 15px;
+        text-align: right;
+        .date {
+            margin-top: 5px;
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 12px;
+        }
+    }
+}
+
+.username {
+    font-size: 18px;
+    margin-bottom: 0px;
+}
+
+.likes_counter {
+    margin-left: 5px;
+}
+
+.article_btns {
+    position: absolute;
+    top: 70px;
+    right: 0px;
+}
+
+.delete_article, .edit_article {
+    border: none;
+    border-radius: 4px;
+    padding: 6px 17px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.delete_article {
+    border: 1px solid #F5222D;
+    color: #F5222D;
+}
+
+.edit_article {
+    color: #52C41A;
+    border: 1px solid #52C41A;
+    margin-left: 12px;
+}
