@@ -43,8 +43,7 @@ const initialState: InitState = {
 
 const articlesReducer = (state = initialState, actions: Actions ): InitState => {
   const { type, dataArticles, payload } = actions;
-
-  console.log(payload);
+  
   switch (type) {
     case GET_ARTICLES:
       return { ...state, data: dataArticles, isLoaded: true };
