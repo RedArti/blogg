@@ -1,16 +1,17 @@
 import { Dispatch } from 'redux';
 import { ActionsTypes, DataUserAuthorize, DataUserChange, NewArticlePostType, RegisteationUser } from '../types';
 import { changeProfile, error, getArticlesData, getFavorite, getSelf, login, regErr, register } from './actionsCreators';
+import { URL, ARTICLES, LIMIT, USERS, LOGIN, USER, FAVORITE } from './apiConstants';
 
 export const getArticles = (num: number) => async (dispatch: Dispatch<ActionsTypes>) => {
-  const body = await fetch(`https://conduit.productionready.io/api/articles?limit=${num}`);
+  const body = await fetch(`${URL}${ARTICLES}${LIMIT}${num}`);
   const res = await body.json();
   const result = await res;
   dispatch(getArticlesData(result));
 };
 
 export const getSelfArticle = (slug: string) => async (dispatch: Dispatch<ActionsTypes>) => {
-  const body = await fetch(`https://conduit.productionready.io/api/articles/${slug}`);
+  const body = await fetch(`${URL}${ARTICLES}/${slug}`);
   const res = await body.json();
   const result = await res;
   dispatch(getSelf(result));
@@ -18,7 +19,7 @@ export const getSelfArticle = (slug: string) => async (dispatch: Dispatch<Action
 
 export const registrationUser = (data: RegisteationUser) => async (dispatch: Dispatch<ActionsTypes>) => {
   try {
-    const response = await fetch('https://conduit.productionready.io/api/users', {
+    const response = await fetch(`${URL}${USERS}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -47,7 +48,7 @@ export const registrationUser = (data: RegisteationUser) => async (dispatch: Dis
 
 export const autorizationUser = (data: DataUserAuthorize) => async (dispatch: Dispatch<ActionsTypes>) => {
   try {
-    const response = await fetch('https://conduit.productionready.io/api/users/login', {
+    const response = await fetch(`${URL}${USERS}/${LOGIN}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -75,7 +76,7 @@ export const autorizationUser = (data: DataUserAuthorize) => async (dispatch: Di
 };
 
 export const createArticle = (data: NewArticlePostType, token: string | null) => async () => {
-  const response = await fetch('https://conduit.productionready.io/api/articles', {
+  const response = await fetch(`${URL}${ARTICLES}`, {
     method: 'POST',
     mode: 'cors',
     headers: {
@@ -112,7 +113,7 @@ export const changeUserProfile = (data: DataUserChange, token: string | null) =>
         'username': data.username,
       },
     };
-  const response = await fetch('https://conduit.productionready.io/api/user', {
+  const response = await fetch(`${URL}${USER}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
@@ -128,7 +129,7 @@ export const changeUserProfile = (data: DataUserChange, token: string | null) =>
 };
 
 export const deleteArticle = (slug: string, token: string) => async () => {
-  const response = await fetch(`https://conduit.productionready.io/api/articles/${slug}`, {
+  const response = await fetch(`${URL}${ARTICLES}/${slug}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
@@ -141,7 +142,7 @@ export const deleteArticle = (slug: string, token: string) => async () => {
 };
 
 export const updateArticle = (data: NewArticlePostType, token: string | null) => async () => {
-  const response = await fetch(`https://conduit.productionready.io/api/articles/${data.slug}`, {
+  const response = await fetch(`${URL}${ARTICLES}/${data.slug}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
@@ -162,7 +163,7 @@ export const updateArticle = (data: NewArticlePostType, token: string | null) =>
 };
 
 export const likePost = (slug: string, token: string) => async (dispatch: Dispatch<ActionsTypes>) => {
-  const response = await fetch(`https://conduit.productionready.io/api/articles/${slug}/favorite`, {
+  const response = await fetch(`${URL}${ARTICLES}/${slug}/${FAVORITE}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
