@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { hideModal } from '../../../redux/actionsCreators';
-import { deleteArticle, getArticles } from '../../../redux/requests';
+import { deleteArticle, getArticles } from '../../../accets/requests/requests';
 import { RootState } from '../../../redux/store';
 import classes from './AcceptModal.module.scss';
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeUserProfile } from '../../redux/requests';
+import { changeUserProfile } from '../../accets/requests/requests';
 import { RootState } from '../../redux/store';
 import { DataUserChange } from '../../types';
 import classes from './Profile.module.scss';
@@ -24,12 +24,18 @@ const Profile = () => {
 
   const onSubmit = (data: DataUserChange) => {
     const userToken: string | null = localStorage.getItem('userToken');
-    const newData = {
-      email: data.email,
-      image: data.image,
-      password: data.password,
-      username: data.username,
-    };
+    const newData = data.password && data.password.length > 8 
+      ? {
+        email: data.email,
+        image: data.image,
+        password: data.password,
+        username: data.username,
+      }
+      : {
+        email: data.email,
+        image: data.image,
+        username: data.username,
+      };
     dispatch(changeUserProfile(newData, userToken));
   };
 

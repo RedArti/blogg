@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { registrationUser } from '../../redux/requests';
+import { autorizationUser, registrationUser } from '../../accets/requests/requests';
 import { RootState } from '../../redux/store';
 import { RegisteationUser } from '../../types';
 import classes from './SignUp.module.scss';
@@ -30,14 +30,26 @@ const SignUp = () => {
     repeatPass: '',
   });
 
+  const [dataForReg, setDataForReg] = useState({
+    username: '',
+    email: '',
+    checkBox: false,
+  });
+
   const { register, handleSubmit, errors } = useForm<SignUpForm>();
 
   const onSubmit = (data: RegisteationUser) => {
+    const dataForAuth = {
+      email: data.email,
+      password: data.password,
+    };
+    localStorage.setItem('userData', JSON.stringify(dataForAuth));
     dispatch(registrationUser(data));
+    dispatch(autorizationUser(dataForAuth));
   };
 
   return isRegister 
-    ? <Redirect to='/sign-in'/>
+    ? <Redirect to='/'/>
     : (
     <div className={classes.signup_wrapper}>
         <div className={classes.signup_form_wrapper}>
@@ -49,6 +61,8 @@ const SignUp = () => {
                 <input 
                 className={ errors.username && classes.err }
                 name='username' 
+                value={dataForReg.username}
+                onChange={(event) => setDataForReg(p => ({ ...p, username: event.target.value }))}
                 type="text" 
                 placeholder='Username' 
                 ref={register({ required: true, minLength: 3, maxLength: 20 })}/>
@@ -62,13 +76,15 @@ const SignUp = () => {
                 <input 
                 className={ errors.email && classes.err }
                 name='email' 
+                value={dataForReg.email}
+                onChange={(event) => setDataForReg(p => ({ ...p, email: event.target.value.toLowerCase() }))}
                 type="text" 
                 placeholder='Email address' 
                 ref={register({
                   required: true,
                   minLength: 10,
                   pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
                     message: '',
                   },
                 })}/>
@@ -108,11 +124,17 @@ const SignUp = () => {
                 <input 
                 type="checkbox"
                 name='agree'
+                checked={dataForReg.checkBox}
+                onChange={() => setDataForReg(p => ({ ...p, checkBox: !dataForReg.checkBox }))}
                 ref={register({ required: true })}/>
                 <span>I agree to the processing of my personal information</span>
             </label>
         
-            <input type="submit" value='Create' className={classes.sign_up_submit}/>
+            { 
+              dataForReg.username && dataForReg.email && passValues.passValue && passValues.repeatPass && dataForReg.checkBox
+                ? <input type="submit" value='Create' className={classes.sign_up_submit}/>
+                : <input type="submit" disabled value='Create' className={classes.sign_up_submit_disabled}/>
+            }
 
             <p className={classes.signIn_link_in_signOut}>
             Already have an account? <Link to='/sign-in'>Sign In.</Link>

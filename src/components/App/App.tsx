@@ -3,12 +3,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import classes from './App.module.scss';
 import Header from './Header';
 import ArticlesList from './ArticlesList';
-import SelfItem from './SelfItem';
+import ArticlesListItem from './ArticlesListItem';
 import SignUp from '../SignUp';
 import SignIn from '../SignIn';
 import Profile from '../Profile';
 import NewArticle from '../NewArticle';
-import EditArtcle from '../EditArtcle';
 import pages from '../../accets/pagesConstants/pagesConstants';
 
 const App = () => (
@@ -25,10 +24,10 @@ const App = () => (
                    exact
                    render={({ match }) => {
                      const { slug } = match.params;
-                     return <SelfItem slug={slug}/>;
+                     return <ArticlesListItem slug={slug}/>;
                    }}/>
             <Route path='/articles/:slug/edit'
-                   render={() =>  <EditArtcle />}/>
+                   render={() =>  <NewArticle />}/>
         </Router>
     </div>);
 

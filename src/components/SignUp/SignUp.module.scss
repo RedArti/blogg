@@ -69,15 +69,23 @@
     }
 }
 
-.sign_up_submit {
+.sign_up_submit, .sign_up_submit_disabled {
     margin-top: 21px;
-    background: #1890FF;
     border-radius: 4px;
     border: none;
     width: 320px;
     height: 40px;
     font-size: 16px;
     color: #fff;
+}
+
+.sign_up_submit_disabled {
+    background-color: gray;
+}
+
+.sign_up_submit {
+    background: #1890FF;
+    cursor: pointer;
 }
 
 .signIn_link_in_signOut {
@@ -89,3 +97,4 @@
 .err_message {
     color: #F5222D;
 }
+

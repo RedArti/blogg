@@ -55,11 +55,11 @@ const loginReducer = ( state = initialState, actions: Actions ): InitState => {
     case LOGIN:
       return { ...state, isLogedIn, userData, isError: false, token: userData.token };
     case REGISTER:
-      return { ...state, isRegister };
+      return { ...state, isRegister, isLogedIn: true };
     case ERROR:
       return { ...state, isError };
     case LOGOUT: 
-      return { ...state, userData: { ...state.userData }, isLogedIn: false, isError: false  };
+      return { ...state, userData: { ...state.userData }, isLogedIn: false, isRegister: false, isError: false  };
     case REG_ERR: 
       return { ...state, isRegError: payload };
     case CHANGE_PROFILE: 

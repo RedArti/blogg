@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Spin } from 'antd';
 import ArticleItem from '../ArticlesItem';
 import classes from './ArticlesList.module.scss';
-import { getArticles } from '../../../redux/requests';
+import { getArticles } from '../../../accets/requests/requests';
 import { RootState } from '../../../redux/store';
 import 'antd/dist/antd.css';
 import { nextFive, noLoaded } from '../../../redux/actionsCreators';
@@ -69,7 +69,7 @@ const ArticlesList = () => {
           <Pagination
           onChange={(page) => loadNextFive(page)} 
           defaultPageSize={5}
-          total={25}
+          total={40}
           showSizeChanger={false}/>
         </div>
       </div>);

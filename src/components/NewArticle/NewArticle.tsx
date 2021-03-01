@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import classes from './NewArticle.module.scss';
 import { RootState } from '../../redux/store';
-import { createArticle, getArticles, updateArticle } from '../../redux/requests';
+import { createArticle, getArticles, updateArticle } from '../../accets/requests/requests';
 import { addTag, addTagEdit, deleteTag, deleteTagEdit, isEditFalse } from '../../redux/actionsCreators';
 import { NewArticleType } from '../../types';
 

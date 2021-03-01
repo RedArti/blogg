@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { autorizationUser } from '../../redux/requests';
+import { autorizationUser } from '../../accets/requests/requests';
 import { RootState } from '../../redux/store';
 import { DataUserAuthorize } from '../../types';
 import classes from './SignIn.module.scss';

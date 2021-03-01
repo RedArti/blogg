@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { HeartFilled } from '@ant-design/icons';
-import { likePost } from '../../../redux/requests';
+import { likePost } from '../../../accets/requests/requests';
 import { RootState } from '../../../redux/store';
 import AcceptModal from '../AcceptModal';
 import classes from './ArticlesItem.module.scss';

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { cleanTagList, isEditFalse, logout } from '../../../redux/actionsCreators';
 import { UserData } from '../../../redux/reducers/loginReducer';
-import { autorizationUser } from '../../../redux/requests';
+import { autorizationUser } from '../../../accets/requests/requests';
 import { RootState } from '../../../redux/store';
 import classes from './Header.module.scss';
 import user_image from './user_image.png';
@@ -13,6 +13,7 @@ const Header = () => {
   const history = useHistory();
 
   const isLogedIn = useSelector<RootState>(state => state.loginReducer.isLogedIn);
+  const isRegister = useSelector<RootState>(state => state.loginReducer.isRegister);
   const userData = useSelector<RootState, UserData>(state => state.loginReducer.userData);
   
 
@@ -38,7 +39,7 @@ const Header = () => {
   const getImage = () => userData.user.image
     ? userData.user.image : user_image;
 
-  const isUserLogedIn = () => isLogedIn
+  const isUserLogedIn = () => isLogedIn || isRegister
     ? <>
     <li className={classes['header-item']}>
     <Link 

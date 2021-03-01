@@ -4,7 +4,7 @@ import { GET_ARTICLES, GET_ARTICLE_DATA, GET_FAVORITE, CHANGE_PROFILE } from './
 export type DataUserChange = { 
   email: string;
   image: string;
-  password: string;
+  password?: string;
   username: string;
 };
 

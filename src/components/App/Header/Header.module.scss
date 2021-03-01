@@ -1,5 +1,5 @@
 .header {
-    max-width: 1440px;
+    width: 100%;
     margin: 0 auto;
     height: 80px;
     background-color: #fff;
@@ -54,7 +54,6 @@
     cursor: pointer;
     outline: none;
     &:nth-child(1) {
-        font-family: Inter;
         font-style: normal;
         font-weight: normal;
         font-size: 18px;

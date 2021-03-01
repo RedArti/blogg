@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
-import { ActionsTypes, DataUserAuthorize, DataUserChange, NewArticlePostType, RegisteationUser } from '../types';
-import { changeProfile, error, getArticlesData, getFavorite, getSelf, login, regErr, register } from './actionsCreators';
-import { URL, ARTICLES, LIMIT, USERS, LOGIN, USER, FAVORITE } from './apiConstants';
+import { ActionsTypes, DataUserAuthorize, DataUserChange, NewArticlePostType, RegisteationUser } from '../../types';
+import { changeProfile, error, getArticlesData, getFavorite, getSelf, login, regErr, register } from '../../redux/actionsCreators';
+import { URL, ARTICLES, LIMIT, USERS, LOGIN, USER, FAVORITE } from '../../redux/apiConstants';
 
 export const getArticles = (num: number) => async (dispatch: Dispatch<ActionsTypes>) => {
   const body = await fetch(`${URL}${ARTICLES}${LIMIT}${num}`);
@@ -98,28 +98,28 @@ export const createArticle = (data: NewArticlePostType, token: string | null) =>
 };
 
 export const changeUserProfile = (data: DataUserChange, token: string | null) => async (dispatch: any) => {
-  const reqBody = data.password.length >= 8
-    ? {
-      'user':{
-        'email': data.email,
-        'image': data.image,
-        'password': data.password,
-        'username': data.username,
-      },
-    } : {
-      'user':{
-        'email': data.email,
-        'image': data.image,
-        'username': data.username,
-      },
-    };
+  // const reqBody = data.password.length >= 8
+  //   ? {
+  //     'user':{
+  //       'email': data.email,
+  //       'image': data.image,
+  //       'password': data.password,
+  //       'username': data.username,
+  //     },
+  //   } : {
+  //     'user':{
+  //       'email': data.email,
+  //       'image': data.image,
+  //       'username': data.username,
+  //     },
+  //   };
   const response = await fetch(`${URL}${USER}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       Authorization: `Token ${token}`, 
     },
-    body: JSON.stringify(reqBody),
+    body: JSON.stringify(data),
   });
 
   const body = await response.json();
